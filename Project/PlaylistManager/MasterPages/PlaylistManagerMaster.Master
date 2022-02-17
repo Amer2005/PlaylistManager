@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PlaylistManagerMaster.Master.cs" Inherits="PlaylistManager.MasterPages.PlaylistManagerMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="../js/Main.js"></script>
+
+</head>
+<body>
+    <form id="MainForm" runat="server">
+        <div id="ErrorMessageDiv">
+            <asp:HiddenField ID="ErrorMessageHiddenField" runat="server" />
+        </div>
+        <div id="SuccessMessageDiv">
+            <asp:HiddenField ID="SuccessMessageHiddenField" runat="server" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Playlist Manager</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img style="height: 20px; width: 20px"; src="<%= (UserNow == null || string.IsNullOrWhiteSpace(UserNow.ImageURL)) ? "https://www.pngkey.com/png/full/157-1579943_no-profile-picture-round.png" : UserNow.ImageURL%>" alt="Profile Picture">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <asp:LinkButton ID="LogInLink" OnClick="LogOutLink_Click" class="dropdown-item" runat="server">Log In</asp:LinkButton>
+                            <asp:LinkButton OnClick="ProfileLink_Click" ID="ProfileLink" class="dropdown-item" runat="server">Profile</asp:LinkButton>
+                            <asp:LinkButton ID="MyPlaylistsLink" OnClick="MyPlaylistsLink_Click" class="dropdown-item" runat="server">My Playlists</asp:LinkButton>
+                            <asp:LinkButton ID="CreateCategoryLink" OnClick="CreateCategoryLink_Click" class="dropdown-item" runat="server">Create Category</asp:LinkButton>
+                            <div class="dropdown-divider"></div>
+                            <asp:LinkButton ID="LogOutLink" OnClick="LogOutLink_Click" class="dropdown-item" runat="server">Log Out</asp:LinkButton>
+                        </div>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Pages/MainPage">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <asp:LinkButton OnClick="CreatePlaylistLink_Click" class="nav-link" ID="CreatePlaylistLink" runat="server">Create Playlist</asp:LinkButton>
+                    </li>
+                    <li class="nav-item">
+                        <asp:LinkButton OnClick="PlaylistsListLink_Click" class="nav-link" ID="PlaylistsListLink" runat="server">Playlists</asp:LinkButton>
+                    </li>
+                </ul>
+                <div class="d-flex flex-row-reverse" style="display: inline;">
+                    <div class="p-2 form-inline my-2 my-lg-0">
+                        <asp:TextBox placeholder="Search" CssClass="form-control mr-sm-2" ID="SearchTextBox" runat="server"></asp:TextBox>
+                        <%--<input type="search" placeholder="Search" aria-label="Search">--%>
+                        <asp:Button OnClick="SearchButton_Click" CssClass="btn btn-outline-success my-2 my-sm-0" ID="SearchButton" runat="server" Text="Search" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div>
+            <asp:ContentPlaceHolder ID="Content1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

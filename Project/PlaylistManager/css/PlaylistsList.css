@@ -1,0 +1,30 @@
+﻿body {
+}
+
+.checked {
+    color: orange;
+}
+
+.rate {
+    color: black;
+    cursor: pointer;
+}
+
+.rate:hover {
+    color: orange;
+}
+
+.rate-item {
+    float: left;
+    cursor: pointer;
+    margin: 0px 15px 0px 15px;
+}
+
+.rate-item:hover ~ .rate-item {
+    color: black;
+}
+
+a.imjusttext {
+    color: #000000;
+    text-decoration: none;
+}
